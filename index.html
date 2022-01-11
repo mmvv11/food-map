@@ -18,27 +18,24 @@
     <link rel="stylesheet" href="css/map.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid inner">
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      <div
+        class="container-fluid d-flex flex-row justify-content-between inner"
+      >
         <a class="navbar-brand" href="#">맛집지도</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+        <div
+          class="collapse navbar-collapse"
+          style="flex-grow: 0"
+          id="navbarNav"
         >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">찾기</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">정보</a>
+              <a
+                class="nav-link"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                >contact</a
+              >
             </li>
           </ul>
         </div>
@@ -47,23 +44,74 @@
 
     <main>
       <div class="main-container inner">
-        <h2>맛집을 검색해보세요</h2>
+        <h2>맛집지도 카테고리를 선택해보세요</h2>
 
-        <div class="btn-group flex-wrap category" role="group">
-          <button type="button" class="btn">한식</button>
-          <button type="button" class="btn">중식</button>
-          <button type="button" class="btn">일식</button>
-          <button type="button" class="btn">양식</button>
-          <button type="button" class="btn">분식</button>
-          <button type="button" class="btn">구이</button>
-          <button type="button" class="btn">회/초밥</button>
-          <button type="button" class="btn">기타</button>
+        <div class="contianer">
+          <div class="row category">
+            <button type="button" class="btn col">한식</button>
+            <button type="button" class="btn col">중식</button>
+            <button type="button" class="btn col">일식</button>
+            <button type="button" class="btn col">양식</button>
+            <div class="w-100"></div>
+            <button type="button" class="btn col">분식</button>
+            <button type="button" class="btn col">구이</button>
+            <button type="button" class="btn col">회/초밥</button>
+            <button type="button" class="btn col">기타</button>
+          </div>
         </div>
 
         <div id="map"></div>
       </div>
     </main>
-    
+
+    <!-- <div class="infowindow">
+      <div class="infowindow-img-container">
+        <img src="https://img.youtube.com/vi/Ht-YXf9cHtQ/sddefault.jpg" class="infowindow-img" alt="...">
+      </div>
+      <div class="infowindow-body">
+        <h5 class="infowindow-title">해뜨는 식당</h5>
+        <p class="infowindow-text">광주광역시 동구 제봉로190번길 7-2</p>
+        <a href="https://youtu.be/Ht-YXf9cHtQ" target="_blank" class="infowindow-btn">영상이동</a>
+      </div>
+    </div> -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">정보</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h6>jiwoon@codehighway.co.kr</h6>
+            <a href="" target="_blank">블로그</a>
+            <a href="" target="_blank">유튜브</a>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- bootstrap bundle -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -74,9 +122,8 @@
     <!-- kakaomap  -->
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a7d905472218fdb68da05544e66a790"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a7d905472218fdb68da05544e66a790&libraries=services"
     ></script>
     <script src="JS/map.js"></script>
   </body>
-
 </html>

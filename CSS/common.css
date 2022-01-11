@@ -25,30 +25,51 @@
   padding: 0 1rem;
 }
 
-html {
-  /* font-size: 10px; */
-}
 
-body {
+
+/* 전체 글꼴 설정 */
+html, body {
   font-family: "SBAggroB";
+  height: 100vh;
 }
 
+/* 카테고리 버튼 호버 파란색 */
 .nav-link:hover {
-  color: blue !important;
+  color: #0d6efd !important;
 }
 
+/* 카테고리 글꼴 개별설정 */
 .category {
   font-family: "SBAggroM";
 }
 
+/* 카테고리 버튼  애니메이션 */
 .btn {
   transition: 0.1s;
 }
 .btn:focus {
   box-shadow: none !important;
-  color: blue;
+  color: #0d6efd;
   transform: translate(0, -5px);
 }
+
+/*  */
+main {
+  height: 90%;
+}
+
+.main-container {
+  height: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container h2 {
+  word-break: keep-all;
+}
+
+
 
 @media only screen and (min-width: 1200px) {
   div.inner {

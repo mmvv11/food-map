@@ -1,7 +1,7 @@
 var mapContainer = document.getElementById("map"), // 지도를 표시할 div
   mapOption = {
-    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level: 3, // 지도의 확대 레벨
+    center: new kakao.maps.LatLng(37.54, 126.96), // 지도의 중심좌표
+    level: 8, // 지도의 확대 레벨
   };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -15,19 +15,55 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
 var positions = [
   {
-    content: "<div>카카오</div>",
+    content: `<div class="infowindow">
+      <div class="infowindow-img-container">
+        <img src="https://img.youtube.com/vi/Ht-YXf9cHtQ/sddefault.jpg" class="infowindow-img" alt="...">
+      </div>
+      <div class="infowindow-body">
+        <h5 class="infowindow-title">해뜨는 식당</h5>
+        <p class="infowindow-text">광주광역시 동구 제봉로190번길 7-2</p>
+        <a href="https://youtu.be/Ht-YXf9cHtQ" target="_blank" class="infowindow-btn">영상이동</a>
+      </div>
+    </div>`,
     latlng: new kakao.maps.LatLng(33.450705, 126.570677),
   },
   {
-    content: "<div>생태연못</div>",
+    content: `<div class="infowindow">
+      <div class="infowindow-img-container">
+        <img src="https://img.youtube.com/vi/Ht-YXf9cHtQ/sddefault.jpg" class="infowindow-img" alt="...">
+      </div>
+      <div class="infowindow-body">
+        <h5 class="infowindow-title">해뜨는 식당</h5>
+        <p class="infowindow-text">광주광역시 동구 제봉로190번길 7-2</p>
+        <a href="https://youtu.be/Ht-YXf9cHtQ" target="_blank" class="infowindow-btn">영상이동</a>
+      </div>
+    </div>`,
     latlng: new kakao.maps.LatLng(33.450936, 126.569477),
   },
   {
-    content: "<div>텃밭</div>",
+    content: `<div class="infowindow">
+      <div class="infowindow-img-container">
+        <img src="https://img.youtube.com/vi/Ht-YXf9cHtQ/sddefault.jpg" class="infowindow-img" alt="...">
+      </div>
+      <div class="infowindow-body">
+        <h5 class="infowindow-title">해뜨는 식당</h5>
+        <p class="infowindow-text">광주광역시 동구 제봉로190번길 7-2</p>
+        <a href="https://youtu.be/Ht-YXf9cHtQ" target="_blank" class="infowindow-btn">영상이동</a>
+      </div>
+    </div>`,
     latlng: new kakao.maps.LatLng(33.450879, 126.56994),
   },
   {
-    content: "<div>근린공원</div>",
+    content: `<div class="infowindow">
+      <div class="infowindow-img-container">
+        <img src="https://img.youtube.com/vi/Ht-YXf9cHtQ/sddefault.jpg" class="infowindow-img" alt="...">
+      </div>
+      <div class="infowindow-body">
+        <h5 class="infowindow-title">해뜨는 식당</h5>
+        <p class="infowindow-text">광주광역시 동구 제봉로190번길 7-2</p>
+        <a href="https://youtu.be/Ht-YXf9cHtQ" target="_blank" class="infowindow-btn">영상이동</a>
+      </div>
+    </div>`,
     latlng: new kakao.maps.LatLng(33.451393, 126.570738),
   },
 ];
@@ -45,6 +81,7 @@ for (var i = 0; i < positions.length; i++) {
   // 마커에 표시할 인포윈도우를 생성합니다
   var infowindow = new kakao.maps.InfoWindow({
     content: positions[i].content, // 인포윈도우에 표시할 내용
+    disableAutoPan: true, // 인포윈도우를 열 때 지도가 자동으로 패닝하지 않을지의 여부 (기본값: false)
   });
 
   // 인포윈도우 배열에 푸시
@@ -89,3 +126,33 @@ function makeOutListener(infowindow) {
 function panTo(latlng) {
   map.panTo(latlng);
 }
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        console.log(coords)
+
+        // // 결과값으로 받은 위치를 마커로 표시합니다
+        // var marker = new kakao.maps.Marker({
+        //     map: map,
+        //     position: coords
+        // });
+
+        // // 인포윈도우로 장소에 대한 설명을 표시합니다
+        // var infowindow = new kakao.maps.InfoWindow({
+        //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        // });
+        // infowindow.open(map, marker);
+
+        // // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        // map.setCenter(coords);
+    } 
+});
