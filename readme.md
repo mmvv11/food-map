@@ -24,3 +24,7 @@
 - 인플루언서 컨택
 - 어드민 페이지 개발
 - 서버&API
+
+Develop Log
+
+https://blog.naver.com/mmvv11/222618120409
