@@ -15,19 +15,65 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 // 주소-좌표 변환 객체를 생성
 let geocoder = new kakao.maps.services.Geocoder();
 
+// 마커 객체 배열
+let markerArray = [];
+
 // 인포윈도우 객체 배열
 let infowindowArray = [];
 
-// 데이터셋
-const dummyDataSet = [
-  {
-    title: "행복한식당",
-    address: "성동구 성수동2가 278-5",
-    url: "https://www.youtube.com/watch?v=wU_z7Pjhhd4",
-  },
-];
+const getDataConfig = {
+  url: "http://127.0.0.1:3000" + `/restaurants`,
+  method: "get",
+};
 
-setMap(dummyDataSet);
+// 데이터 요청 및 실행
+axios(getDataConfig).then((res) => {
+  // 데이터셋
+  const dataSet = res.data.result;
+
+  // 실행
+  setMap(dataSet);
+});
+
+const categoryContainer = document.querySelector(".category");
+
+categoryContainer.addEventListener("click", categoryHandler);
+
+// 카테고리 클릭 핸들러
+function categoryHandler(event) {
+  const categoryId = event.target.id;
+  const category = categoryMap[categoryId];
+
+  const getDataByCategoryConfig = {
+    url: "http://127.0.0.1:3000" + `/restaurants?category=${category}`,
+    method: "get",
+  };
+
+  // 데이터 요청 및 실행
+  axios(getDataByCategoryConfig).then((res) => {
+    // 데이터셋
+    const dataSet = res.data.result;
+    console.log(dataSet);
+    // 기존 마커 삭제
+    for (var i = 0; i < markerArray.length; i++) {
+      markerArray[i].setMap(null);
+    }
+    // 실행
+    setMap(dataSet);
+  });
+}
+
+// 카테고리
+const categoryMap = {
+  korea: "한식",
+  china: "중식",
+  japan: "일식",
+  america: "양식",
+  meel: "분식",
+  meat: "구이",
+  sushi: "회/초밥",
+  etc: "기타",
+};
 
 // HTML 코드로 바꾸는 함수
 function getContent(title, address, url) {
@@ -100,9 +146,12 @@ async function setMap(dataSet) {
       position: latlng, // 마커의 위치
     });
 
+    // 마커 배열에 푸시
+    markerArray.push(marker);
+
     // 마커에 표시할 인포윈도우를 생성
     let infowindow = new kakao.maps.InfoWindow({
-      content: getContent(data.title, data.address, data.url), // 인포윈도우에 표시할 내용
+      content: getContent(data.title, data.address, data.videoUrl), // 인포윈도우에 표시할 내용
       disableAutoPan: true, // 인포윈도우를 열 때 지도가 자동으로 패닝하지 않을지의 여부 (기본값: false)
     });
 
