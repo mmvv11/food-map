@@ -1,0 +1,6 @@
+back/.idea/*
+back/node_modules/*
+back/package-lock.json
+back/log/*
+back/.DS_Store
+back/SSREADME.md

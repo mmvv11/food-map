@@ -58,6 +58,8 @@ function categoryHandler(event) {
     for (var i = 0; i < markerArray.length; i++) {
       markerArray[i].setMap(null);
     }
+    // 기존 인포윈도우 닫기
+    closeInfoWindow();
     // 실행
     setMap(dataSet);
   });
