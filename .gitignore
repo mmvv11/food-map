@@ -4,3 +4,5 @@ back/package-lock.json
 back/log/*
 back/.DS_Store
 back/SSREADME.md
+back/config/secret.js
+back/config/secret.js

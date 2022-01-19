@@ -1,12 +1,15 @@
 const mysql = require("mysql2/promise");
 const { logger } = require("./winston");
+const secret = require("./secret");
+
+console.log(secret.host);
 
 const pool = mysql.createPool({
-  host: "15.165.137.183",
-  user: "coha",
-  port: "3306",
-  password: "codehighway",
-  database: "FoodMapDB",
+  host: secret.host,
+  user: secret.user,
+  port: secret.port,
+  password: secret.password,
+  database: secret.database,
 });
 
 module.exports = {
