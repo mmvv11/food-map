@@ -120,8 +120,6 @@ exports.getRestaurants = async function (req, res) {
         category
       );
 
-      console.log(selectRestaurantsRows);
-
       return res.send({
         result: selectRestaurantsRows,
         isSuccess: true,
