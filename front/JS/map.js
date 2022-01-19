@@ -22,7 +22,7 @@ let markerArray = [];
 let infowindowArray = [];
 
 const getDataConfig = {
-  url: "http://127.0.0.1:3000" + `/restaurants`,
+  url: "http://www.seongong.shop:3000" + `/restaurants`,
   method: "get",
 };
 
@@ -45,7 +45,7 @@ function categoryHandler(event) {
   const category = categoryMap[categoryId];
 
   const getDataByCategoryConfig = {
-    url: "http://127.0.0.1:3000" + `/restaurants?category=${category}`,
+    url: "http://www.seongong.shop:3000" + `/restaurants?category=${category}`,
     method: "get",
   };
 
