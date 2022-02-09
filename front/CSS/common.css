@@ -25,10 +25,9 @@
   padding: 0 1rem;
 }
 
-
-
 /* 전체 글꼴 설정 */
-html, body {
+html,
+body {
   font-family: "SBAggroB";
   height: 100vh;
 }
@@ -68,8 +67,6 @@ main {
 .main-container h2 {
   word-break: keep-all;
 }
-
-
 
 @media only screen and (min-width: 1200px) {
   div.inner {
